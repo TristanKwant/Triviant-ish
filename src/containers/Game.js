@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import getCurrentGame from '../actions/games/get'
 import fetchGames from '../actions/games/fetch'
 import subscribeToGames from '../actions/games/subscribe'
+import Question from './Question'
 
 class Game extends PureComponent {
   componentWillMount() {
@@ -21,7 +22,7 @@ class Game extends PureComponent {
 
     return (
       <div className="Game">
-        <h1>Game!</h1>
+        <Question />
         <p>This is where your game goes...</p>
       </div>
     )
@@ -29,7 +30,7 @@ class Game extends PureComponent {
 }
 
 const mapStateToProps = ({ currentUser, currentGame, games, subscriptions }) => {
-  
+
    const game = games.filter((g) => (g._id === currentGame))[0]
    const currentPlayer = game && game.players.filter((p) => (p.userId === currentUser._id))[0]
 

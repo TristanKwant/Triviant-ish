@@ -1,13 +1,18 @@
 export default [
-  {
-    _id: 1
-    question: ["Where am I?", "Here"],
-    answers:  ["There", "Where", "Here", "I dont know"]
-  },
-  {
-    _id: 2
-    question: ["Ananas or ananas?", "Pineapple"]
-    answers:  ["Ananas", "ananas", "Potato", "Pineapple"]
-  },
-
-]
+    {
+      id: 'question2',
+      question: 'Who won world cup 2002?',
+      optionA: ["Braizlllll", true],
+      optionB: ["France", false],
+      optionC: ["Italy", false],
+      optionD: ["Germany", false]
+    },
+    {
+      id: 'question3',
+      question: 'Do you like pizza?',
+      optionA: ["Hello", true],
+      optionB: ["Welcom", false],
+      optionC: ["No", false],
+      optionD: ["Go awya", false]
+    }
+];
