@@ -1,10 +1,11 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-import './Questions.css'
 import {List, ListItem} from 'material-ui/List';
 import Questions from '../fixtures/questions'
 import Checkbox from 'material-ui/Checkbox';
 import Toggle from 'material-ui/Toggle';
+import Timer from './Timer';
+import './Questions.css'
 import fetchQuestions from '../actions/questions/fetch'
 import PropTypes from 'prop-types'
 
@@ -30,7 +31,10 @@ class Question extends PureComponent {
 
     return (
       <div className="Questions-container">
+
         <p> { this.props.questions.map(this.renderQuestion.bind(this)) } </p>
+        <Timer />
+       
       </div>
     )
   }
