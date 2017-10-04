@@ -14,5 +14,6 @@ export default [
       optionB: ["Welcom", false],
       optionC: ["No", false],
       optionD: ["Go awya", false]
-    }
+    },
+    
 ];
