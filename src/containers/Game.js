@@ -23,7 +23,6 @@ class Game extends PureComponent {
     return (
       <div className="Game">
         <Question />
-        <p>This is where your game goes...</p>
       </div>
     )
   }

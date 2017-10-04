@@ -5,6 +5,7 @@ import {List, ListItem} from 'material-ui/List';
 import Questions from '../fixtures/questions'
 import Checkbox from 'material-ui/Checkbox';
 import Toggle from 'material-ui/Toggle';
+import Timer from './Timer';
 
 const styles = {
   root: {
@@ -28,6 +29,7 @@ class Question extends PureComponent {
     return (
       <div className="Questions-container">
         <h1>{question.question}</h1>
+        <Timer />
         <ListItem
           leftCheckbox={<Checkbox />}
           primaryText={answer1}
