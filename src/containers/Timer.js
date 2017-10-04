@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+
 
 class Timer extends PureComponent {
 
@@ -51,4 +53,9 @@ class Timer extends PureComponent {
   }
 }
 
+const mapStateToProps = ({ timer }) => ({
+  timer
+})
+
+export default connect(mapStateToProps)(Timer)
 export default Timer
