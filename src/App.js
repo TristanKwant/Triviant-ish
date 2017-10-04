@@ -6,6 +6,7 @@ import Navigation from './components/ui/Navigation'
 import Routes from './routes'
 import './App.css'
 
+
 class App extends Component {
   static childContextTypes = {
     muiTheme: PropTypes.object.isRequired,

@@ -42,6 +42,10 @@ class Lobby extends PureComponent {
       .includes(this.props.currentUser._id)
   }
 
+  hasPlayers(game) {
+    return `${game.players.length}/10`
+  }
+
   renderGame(game, index) {
     let ActionIcon = this.isJoinable(game) ? JoinGameIcon : WatchGameIcon
     if (this.isPlayer(game)) ActionIcon = game.isPlayable ? PlayGameIcon : WaitingIcon
@@ -51,7 +55,9 @@ class Lobby extends PureComponent {
         key={index}
         onClick={this.goToGame(game._id).bind(this)}
         rightIcon={<ActionIcon />}
+        // primaryText={this.hasPlayers(game).length} />
         primaryText={game.title} />
+        // ${game.playerIds.length}/10 players joined</p>/>
     )
   }
 
