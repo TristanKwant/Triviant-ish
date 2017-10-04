@@ -1,8 +1,8 @@
 export const TIMER = 'TIMER'
 
-export default (newRecipe) => {
+export default (timer) => {
   return {
     type: TIMER,
-    payload: TIMER
+    payload: timer
   }
 }

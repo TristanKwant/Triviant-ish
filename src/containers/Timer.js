@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import resetTimer from '../actions/timer'
 
 
 class Timer extends PureComponent {
@@ -40,6 +41,7 @@ class Timer extends PureComponent {
       seconds: seconds,
     });
     if (seconds == 0) {
+      this.props.resetTimer()
       clearInterval(this.timer);
     }
   }
@@ -56,5 +58,7 @@ class Timer extends PureComponent {
 const mapStateToProps = ({ timer }) => ({
   timer
 })
+const mapDispatchToProps = { resetTimer }
+// export default connect(null, { Timer })(Timer)
 
-export default connect(mapStateToProps)(Timer)
+export default connect(mapStateToProps, mapDispatchToProps)(Timer)
