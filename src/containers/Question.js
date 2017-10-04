@@ -8,6 +8,7 @@ import Timer from './Timer';
 import './Questions.css'
 import fetchQuestions from '../actions/questions/fetch'
 import PropTypes from 'prop-types'
+import Scoreboard from './Scoreboard'
 
 const styles = {
   root: {
@@ -31,10 +32,11 @@ class Question extends PureComponent {
 
     return (
       <div className="Questions-container">
-
+           <Scoreboard />
         <p> { this.props.questions.map(this.renderQuestion.bind(this)) } </p>
         <Timer />
-       
+
+
       </div>
     )
   }
