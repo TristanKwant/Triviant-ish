@@ -23,7 +23,10 @@ class Question extends PureComponent {
   }
 
   renderQuestion(q, index) {
-      return <p>{q.question}</p>
+
+      if(index === 0){
+        return <p>{q.question}</p>
+      }
 
   }
 
