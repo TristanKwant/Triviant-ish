@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import getCurrentGame from '../actions/games/get'
 import fetchGames from '../actions/games/fetch'
 import subscribeToGames from '../actions/games/subscribe'
-import Question from './Question'
+import QuestionsContainer from './QuestionsContainer'
 
 class Game extends PureComponent {
   componentWillMount() {
@@ -22,7 +22,7 @@ class Game extends PureComponent {
 
     return (
       <div className="Game">
-        <Question />
+        <QuestionsContainer />
       </div>
     )
   }

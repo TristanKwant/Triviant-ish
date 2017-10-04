@@ -58,3 +58,4 @@ const mapStateToProps = ({ timer }) => ({
 })
 
 export default connect(mapStateToProps)(Timer)
+export default Timer

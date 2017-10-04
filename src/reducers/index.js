@@ -6,6 +6,7 @@ import currentUser from './currentUser'
 import currentGame from './currentGame'
 import subscriptions from './subscriptions'
 import timer from './timer'
+import questions from './questions'
 
 export default {
   games,
@@ -15,4 +16,5 @@ export default {
   currentGame,
   subscriptions,
   timer,
+  questions,
 }
