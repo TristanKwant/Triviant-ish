@@ -7,7 +7,14 @@ const api = new API()
 export default () => {
   return (dispatch) => {
     const backend = api.service('questions')
-    backend.find()
+    backend.find({
+      query: {
+        $limit: 50,
+        $sort: {
+          createdAt: -1
+        }
+      }
+    })
     .then((result) => {
       console.log(result)
       dispatch({
