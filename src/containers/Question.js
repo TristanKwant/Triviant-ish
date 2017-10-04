@@ -5,6 +5,7 @@ import {List, ListItem} from 'material-ui/List';
 import Questions from '../fixtures/questions'
 import Checkbox from 'material-ui/Checkbox';
 import Toggle from 'material-ui/Toggle';
+import fetchQuestions from '../actions/questions/fetch'
 
 const styles = {
   root: {
@@ -14,6 +15,9 @@ const styles = {
 };
 
 class Question extends PureComponent {
+  componentWillMount() {
+    this.props.fetchQuestions()
+  }
 
   render() {
     const question = Questions[Math.floor(Math.random() * Questions.length)];
@@ -57,5 +61,6 @@ const mapStateToProps = ({ games, currentUser, subscriptions }) => (
     subscribed: subscriptions.includes('games'),
   }
 )
+const mapDispatchToProps = { fetchQuestions }
 
-export default connect(mapStateToProps, { Question })(Question)
+export default connect(mapStateToProps, mapDispatchToProps)(Question)
