@@ -5,6 +5,7 @@ import loadError from './loadError'
 import currentUser from './currentUser'
 import currentGame from './currentGame'
 import subscriptions from './subscriptions'
+import questions from './questions'
 
 export default {
   games,
@@ -13,4 +14,5 @@ export default {
   currentUser,
   currentGame,
   subscriptions,
+  questions,
 }
