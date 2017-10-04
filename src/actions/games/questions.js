@@ -6,7 +6,7 @@ import {
   LOAD_SUCCESS
 } from '../loading'
 
-export const FETCHED_GAMES = 'FETCHED_GAMES'
+export const FETCHED_QUESTIONS = 'FETCHED_QUESTIONS'
 
 const api = new API()
 
@@ -14,7 +14,7 @@ export default () => {
   return (dispatch) => {
     dispatch({ type: APP_LOADING })
 
-    const backend = api.service('games')
+    const backend = api.service('questions')
 
     api.authenticate()
       .then(() => {
@@ -30,7 +30,7 @@ export default () => {
             dispatch({ type: LOAD_SUCCESS })
 
             dispatch({
-              type: FETCHED_GAMES,
+              type: FETCHED_QUESTIONS,
               payload: result.data
             })
           })
@@ -49,7 +49,7 @@ export default () => {
             dispatch({ type: LOAD_SUCCESS })
 
             dispatch({
-              type: FETCHED_GAMES,
+              type: FETCHED_QUESTIONS,
               payload: result.data
             })
           })

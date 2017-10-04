@@ -5,6 +5,9 @@ import {List, ListItem} from 'material-ui/List';
 import Questions from '../fixtures/questions'
 import Checkbox from 'material-ui/Checkbox';
 import Toggle from 'material-ui/Toggle';
+import PropTypes from 'prop-types'
+import fetchQuestions from '../actions/games/fetch'
+
 
 const styles = {
   root: {
@@ -13,49 +16,29 @@ const styles = {
   },
 };
 
-class Question extends PureComponent {
+export class Question extends PureComponent {
+  static propTypes = {
+    question: PropTypes.string.isRequired,
+  }
+  componentWillMount() {
+    this.props.fetchQuestions()
+    this.props.subscribeToRecipesService()
+  }
+
+  renderRecipe(question, index) {
+    return <Question
+      key={index} { ...question } />
+  }
 
   render() {
-    const question = Questions[Math.floor(Math.random() * Questions.length)];
-    const answer1 = question.optionA[0]
-    const answer2 = question.optionB[0]
-    const answer3 = question.optionC[0]
-    const answer4 = question.optionD[0]
-
-    const answers = answer1 + " " + answer2+ " " + answer3+ " " + answer4
-    console.log(answers);
-
     return (
       <div className="Questions-container">
         <h1>{question.question}</h1>
-        <ListItem
-          leftCheckbox={<Checkbox />}
-          primaryText={answer1}
-        />
-        <ListItem
-          leftCheckbox={<Checkbox />}
-          primaryText={answer2}
-        />
-        <ListItem
-          leftCheckbox={<Checkbox />}
-          primaryText={answer3}
-        />
-        <ListItem
-          leftCheckbox={<Checkbox />}
-          primaryText={answer4}
-        />
-      </div>
     )
   }
-
 }
 
-const mapStateToProps = ({ games, currentUser, subscriptions }) => (
-  {
-    games,
-    currentUser,
-    subscribed: subscriptions.includes('games'),
-  }
-)
+const mapStateToProps = ({ recipes }) => ({ recipes })
+const mapDispatchToProps = { fetchRecipes, subscribeToRecipesService }
 
 export default connect(mapStateToProps, { Question })(Question)
