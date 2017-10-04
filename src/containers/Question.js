@@ -23,7 +23,10 @@ class Question extends PureComponent {
   }
 
   renderQuestion(q, index) {
-      return <p>{q.question}</p>
+
+      if(index === 0){
+        return <p>{q.question}</p>
+      }
 
 }
   render() {
@@ -34,7 +37,7 @@ class Question extends PureComponent {
 
         <p> { this.props.questions.map(this.renderQuestion.bind(this)) } </p>
         <Timer />
-       
+
       </div>
     )
   }

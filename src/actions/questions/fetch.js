@@ -9,7 +9,7 @@ export default () => {
     const backend = api.service('questions')
     backend.find({
       query: {
-        $limit: 50,
+        $limit: 5,
         $sort: {
           createdAt: -1
         }
