@@ -1,0 +1,13 @@
+.Questions-container {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.paper {
+  padding: 30px;
+  margin-top: 20px;
+}
+
+.answer-checkbox {
+  width: 100% !important;
+}

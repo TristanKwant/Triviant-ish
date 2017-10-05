@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import timerAction from '../actions/timerAction'
 import addNr from '../actions/questionNr/addNr'
+import LinearProgress from 'material-ui/LinearProgress';
 
 
 class Timer extends PureComponent {
@@ -17,7 +17,6 @@ class Timer extends PureComponent {
 
 
   componentDidMount() {
-
     this.props.timerAction(10)
     this.startTimer()
   }
@@ -26,7 +25,7 @@ class Timer extends PureComponent {
   startTimer(){
 // debugger
     // this.setState({ time: this.props.timer });
-    if (this.props.timer == 10) {
+    if (this.props.timer === 10) {
       var interVal = setInterval(this.countDown, 1000);
     this.setState({interVal: interVal});
 
@@ -55,20 +54,13 @@ class Timer extends PureComponent {
 
 
   componentDidUpdate() {
-
-    // if(this.props.timer == 0){
-        console.log()
-    // }
-
   }
 
   render() {
-    const { timer } = this.props
     return (
 
       <div>
-        <p>Time left to answer: {this.props.timer} s</p>
-
+        <LinearProgress mode="determinate" value={this.props.timer } max={10} />
       </div>
     )
   }
