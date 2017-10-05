@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import timerAction from '../actions/timerAction'
 import addNr from '../actions/questionNr/addNr'
 import LinearProgress from 'material-ui/LinearProgress';
+import './Timer.css'
 
 
 class Timer extends PureComponent {
@@ -17,7 +18,7 @@ class Timer extends PureComponent {
 
 
   componentDidMount() {
-    this.props.timerAction(10)
+    this.props.timerAction(100)
     this.startTimer()
   }
 
@@ -59,8 +60,9 @@ class Timer extends PureComponent {
   render() {
     return (
 
-      <div>
-        <LinearProgress mode="determinate" value={this.props.timer } max={10} />
+      <div className="timer-bar">
+        <span>Time left to answer: {this.props.timer}</span>
+        <LinearProgress mode="determinate" value={this.props.timer} max={10} className={'timer'} />
       </div>
     )
   }

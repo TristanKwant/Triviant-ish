@@ -1,0 +1,12 @@
+.timer {
+  height: 30px !important;
+  content: "Time left to answer!" !important;
+  color:white;
+}
+
+.timer-bar span {
+  bottom: -25px;
+  position: relative;
+  z-index: 99999;
+  color: white;
+}

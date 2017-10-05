@@ -23,9 +23,8 @@ const styles = {
     overflowY: 'auto',
   },
   checkbox: {
-    marginBottom: 16,
     textAlign:'left',
-    marginTop:50,
+    marginTop:30,
     width:100,
   },
 };
