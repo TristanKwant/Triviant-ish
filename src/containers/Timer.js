@@ -1,64 +1,77 @@
 import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import resetTimer from '../actions/timer'
+import timerAction from '../actions/timerAction'
+import addNr from '../actions/questionNr/addNr'
+import LinearProgress from 'material-ui/LinearProgress';
+import './Timer.css'
 
 
 class Timer extends PureComponent {
 
   constructor() {
     super();
-    this.state = { time: {}, seconds: 10 };
-    this.timer = 10;
+    // this.state = { time: {}, seconds: 10 };
+    // this.timer = 10;
     this.countDown = this.countDown.bind(this);
   }
 
-  secondsToTime(secs){
-    let hours = Math.floor(secs / (60 * 60));
-    let divisor_for_minutes = secs % (60 * 60);
-    let minutes = Math.floor(divisor_for_minutes / 60);
-    let divisor_for_seconds = divisor_for_minutes % 60;
-    let seconds = Math.ceil(divisor_for_seconds);
 
-    let obj = {
-      "s": seconds
-    };
-    return obj;
-  }
 
   componentDidMount() {
-    let timeLeftVar = this.secondsToTime(this.state.seconds);
-    this.setState({ time: timeLeftVar });
-    if (this.timer == 10) {
-      this.timer = setInterval(this.countDown, 1000);
+    this.props.timerAction(100)
+    this.startTimer()
+  }
+
+
+  startTimer(){
+// debugger
+    // this.setState({ time: this.props.timer });
+    if (this.props.timer === 10) {
+      var interVal = setInterval(this.countDown, 1000);
+    this.setState({interVal: interVal});
+
     }
+
   }
 
   countDown() {
-    let seconds = this.state.seconds - 1;
-    this.setState({
-      time: this.secondsToTime(seconds),
-      seconds: seconds,
-    });
-    if (seconds == 0) {
-      this.props.resetTimer()
-      clearInterval(this.timer);
+
+
+    let seconds = this.props.timer -1;
+    this.props.timerAction(seconds)
+    // this.setState({
+    //   time: seconds,
+    //   seconds: seconds,
+    // });
+    if (this.props.timer < 0) {
+      // this.props.timer()
+      clearInterval(this.state.interVal);
+      this.props.timerAction(10)
+      this.startTimer()
+      this.props.addNr(this.props.questionsNr +1)
+
     }
+  }
+
+
+  componentDidUpdate() {
   }
 
   render() {
     return (
-      <div>
-        <p>Time left to answer: {this.state.time.s} s</p>
+
+      <div className="timer-bar">
+        <span>Time left to answer: {this.props.timer}</span>
+        <LinearProgress mode="determinate" value={this.props.timer} max={10} className={'timer'} />
       </div>
     )
   }
 }
 
-const mapStateToProps = ({ timer }) => ({
-  timer
+const mapStateToProps = ({ timer, questionsNr }) => ({
+  timer, questionsNr
 })
-const mapDispatchToProps = { resetTimer }
+const mapDispatchToProps = { timerAction, addNr }
 // export default connect(null, { Timer })(Timer)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Timer)
