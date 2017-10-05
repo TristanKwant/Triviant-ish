@@ -26,11 +26,17 @@ class Question extends PureComponent {
 
   componentDidUpdate() {
     // this.props.resettimer()
+    if(this.props.timer == 0 ){
+
+    }
   }
 
   renderQuestion(q, index) {
 
-      if(index === 0){
+      // var number = Math.floor((Math.random() * 4));
+      // this.props.questionNr
+      // console.log(this.props.questionsNr)
+      if(index === this.props.questionsNr){
         return <p>{q.question}</p>
       }
 
@@ -51,13 +57,14 @@ class Question extends PureComponent {
 
 }
 
-const mapStateToProps = ({ games, currentUser, subscriptions, questions, timer }) => (
+const mapStateToProps = ({ games, currentUser, subscriptions, questions, timer, questionsNr }) => (
   {
     games,
     currentUser,
     questions,
     subscribed: subscriptions.includes('games'),
     timer,
+    questionsNr,
   }
 )
 const mapDispatchToProps = { fetchQuestions, resettimer }
