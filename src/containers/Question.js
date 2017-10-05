@@ -8,6 +8,7 @@ import Timer from './Timer';
 import './Questions.css'
 import fetchQuestions from '../actions/questions/fetch'
 import PropTypes from 'prop-types'
+import resettimer from '../actions/resettimer'
 
 const styles = {
   root: {
@@ -20,6 +21,11 @@ const styles = {
 class Question extends PureComponent {
   componentWillMount() {
     this.props.fetchQuestions()
+  //  this.props.resettimer()
+  }
+
+  componentDidUpdate() {
+    // this.props.resettimer()
   }
 
   renderQuestion(q, index) {
@@ -31,7 +37,7 @@ class Question extends PureComponent {
   }
 
   render() {
-    const { questions } = this.props
+    const { questions, timer } = this.props
 
     return (
       <div className="Questions-container">
@@ -45,14 +51,15 @@ class Question extends PureComponent {
 
 }
 
-const mapStateToProps = ({ games, currentUser, subscriptions, questions }) => (
+const mapStateToProps = ({ games, currentUser, subscriptions, questions, timer }) => (
   {
     games,
     currentUser,
     questions,
     subscribed: subscriptions.includes('games'),
+    timer,
   }
 )
-const mapDispatchToProps = { fetchQuestions }
+const mapDispatchToProps = { fetchQuestions, resettimer }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Question)
