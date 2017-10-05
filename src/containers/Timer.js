@@ -46,6 +46,8 @@ class Timer extends PureComponent {
     }
   }
 
+
+
   render() {
     return (
       <div>

@@ -1,5 +1,3 @@
-// src/actions/games/join.js
-
 import API from '../../api'
 import {
   APP_LOADING,
