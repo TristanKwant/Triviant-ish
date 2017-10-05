@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import timerAction from '../actions/timerAction'
+import addNr from '../actions/questionNr/addNr'
 
 
 class Timer extends PureComponent {
@@ -47,10 +48,11 @@ class Timer extends PureComponent {
       clearInterval(this.state.interVal);
       this.props.timerAction(10)
       this.startTimer()
-
+      this.props.addNr(this.props.questionsNr +1)
 
     }
   }
+
 
   componentDidUpdate() {
 
@@ -72,10 +74,10 @@ class Timer extends PureComponent {
   }
 }
 
-const mapStateToProps = ({ timer }) => ({
-  timer
+const mapStateToProps = ({ timer, questionsNr }) => ({
+  timer, questionsNr
 })
-const mapDispatchToProps = { timerAction }
+const mapDispatchToProps = { timerAction, addNr }
 // export default connect(null, { Timer })(Timer)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Timer)
