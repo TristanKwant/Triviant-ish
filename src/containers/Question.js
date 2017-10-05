@@ -47,33 +47,50 @@ class Question extends PureComponent {
       }
   }
 
+  getAnswer(a){
+    console.log(a)
+
+  }
+
+
+
   renderAnswers(answers, index) {
+      var optionA = "A"
       if(index === this.props.questionsNr){
         return <GridList
                 cols={2}
                 cellHeight={100}
                 padding={10}
                 style={styles.gridList}
+
               >
               <Checkbox
                 className={'answer-checkbox'}
                 label={answers.optionA}
+
                 style={styles.checkbox}
+                onClick={() => this.getAnswer("A")}
               />
               <Checkbox
                 className={'answer-checkbox'}
                 label={answers.optionB}
+                value="optionB"
                 style={styles.checkbox}
+                onClick={() => this.getAnswer("B")}
               />
               <Checkbox
                 className={'answer-checkbox'}
                 label={answers.optionC}
+                value="optionC"
                 style={styles.checkbox}
+                onClick={() => this.getAnswer("C")}
               />
               <Checkbox
                 className={'answer-checkbox'}
                 label={answers.optionD}
+                value="optionD"
                 style={styles.checkbox}
+                onClick={() => this.getAnswer("D")}
               />
               </GridList>
 
