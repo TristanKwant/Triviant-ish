@@ -8,6 +8,7 @@ import Timer from './Timer';
 import './Questions.css'
 import fetchQuestions from '../actions/questions/fetch'
 import PropTypes from 'prop-types'
+import Scoreboard from './Scoreboard'
 import resettimer from '../actions/resettimer'
 import Paper from 'material-ui/Paper';
 import {GridList, GridTile} from 'material-ui/GridList';
@@ -87,6 +88,9 @@ class Question extends PureComponent {
 
     return (
       <div className="Questions-container">
+           <Scoreboard />
+        <p> { this.props.questions.map(this.renderQuestion.bind(this)) } </p>
+        <Timer />
         <Paper className="paper" styles="padding: 20px;">
           { this.props.questions.map(this.renderQuestion.bind(this)) }
           <Timer />
