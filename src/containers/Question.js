@@ -24,9 +24,13 @@ class Question extends PureComponent {
   }
 
   renderQuestion(q, index) {
-      return <p>{q.question}</p>
 
-}
+      if(index === 0){
+        return <p>{q.question}</p>
+      }
+
+  }
+
   render() {
     const { questions } = this.props
 
@@ -35,8 +39,6 @@ class Question extends PureComponent {
            <Scoreboard />
         <p> { this.props.questions.map(this.renderQuestion.bind(this)) } </p>
         <Timer />
-
-
       </div>
     )
   }
