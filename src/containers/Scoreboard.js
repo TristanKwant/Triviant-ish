@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-export class Scoreboard extends PureComponent {
+class Scoreboard extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -10,48 +10,51 @@ export class Scoreboard extends PureComponent {
 
       score: 0,
       currentUser: 'name',
-      opponents: 'name'
+
+
     }
-    // this.increaseScore = this.increaseScore.bind(this)
-    // this.decreaseScore = this.decreaseScore.bind(this)
   }
-//
-//   increaseScore(p) {
-//     this.setState({
-//       //if user.answer === true
-//       score: (this.state.players.score + 1),
-//     })
-//   }
-//
-//   decreaseScore(p) {
-//     this.setState({
-//       //if user.answer === false
-//       score: (this.state.players.score - 1),
-//     })
-//   }
-//
-// renderScore(s, index){
-//   return <p>{s.players.score}</p>
-// }
 
   render(){
-    const { currentUser } = this.props
+    const { game } = this.props
 
+       if (game.players.length > 1) {
     return (
+
       <div>
-      <p>{ currentUser.name } - score: {this.state.score} points</p>
-      <p>{ this.state.opponents} - score: {this.state.opponents.score} points </p>
+      <p>{ game.players[0].name} - score: {game.players[0].score} points</p>
+      <p>{ game.players[1].name} - score: {game.players[1].score} points</p>
+
       </div>
-     )}
-
-
+     )
+   }
+    else {
+     return (
+       <div>
+       <p>{ game.players[0].name} - score: {game.players[0].score} points</p>
+       <p> waiting for another player </p>
+       </div>
+     )
+   }
+ }
 }
 
 
 
-const mapStateToProps =  ({ currentUser, score }) => ({
+const mapStateToProps =  ({ score, currentUser, currentGame, games, subscriptions }) => {
+
+  const game = games.filter((g) => (g._id === currentGame))[0]
+  const currentPlayer = game && game.players.filter((p) => (p.userId === currentUser._id))[0]
+  const scoreCount = currentPlayer
+
+  return {
+  currentPlayer,
+  score,
+  game,
   currentUser,
-  score
+  subscribed: subscriptions.includes('games'),
 }
-)
+}
+
+
 export default connect (mapStateToProps)(Scoreboard)

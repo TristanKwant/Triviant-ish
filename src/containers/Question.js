@@ -88,10 +88,8 @@ class Question extends PureComponent {
 
     return (
       <div className="Questions-container">
-           <Scoreboard />
-        <p> { this.props.questions.map(this.renderQuestion.bind(this)) } </p>
-        <Timer />
         <Paper className="paper" styles="padding: 20px;">
+          <Scoreboard />
           { this.props.questions.map(this.renderQuestion.bind(this)) }
           <Timer />
           { this.props.questions.map(this.renderAnswers.bind(this)) }
