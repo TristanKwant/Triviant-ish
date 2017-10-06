@@ -44,16 +44,19 @@ class Question extends PureComponent {
 
   renderQuestion(q, index) {
       if(index === this.props.questionsNr){
+
         return <h2>{q.question}</h2>
       }
   }
 
   getAnswer(a){
-    const { addPoints, game } = this.props
-    console.log(a)
-    addPoints(game._id, a)
+    const { addPoints, game, questionsNr } = this.props
+
+    console.log("olaaaa", a)
+    addPoints(game._id, a, questionsNr)
 
   }
+
 
 
 
@@ -72,7 +75,7 @@ class Question extends PureComponent {
                 label={answers.optionA}
 
                 style={styles.checkbox}
-                onClick={() => this.getAnswer("A")}
+                onClick={() => this.getAnswer('Brazil')}
               />
               <Checkbox
                 className={'answer-checkbox'}

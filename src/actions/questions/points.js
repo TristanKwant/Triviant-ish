@@ -7,16 +7,16 @@ import {
 const api = new API()
 export const ADD_POINTS = 'ADD_POINTS'
 
-export default (gameId, answer) => {
+export default (gameId, answer, questionsNr) => {
   return (dispatch) => {
     const backend = api.service('games')
     api.app.authenticate()
       .then((result) => {
-        backend.patch(gameId, { type: ADD_POINTS })
+        backend.patch(gameId, { type: ADD_POINTS, payload: {answer: answer, nr: questionsNr} })
         .then(() => {
           dispatch({
             type: ADD_POINTS,
-            payload: answer
+            payload: answer, questionsNr
           })
         })
         .catch((error) => {
