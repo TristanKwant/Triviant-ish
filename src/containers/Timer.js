@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import timerAction from '../actions/timerAction'
 import addNr from '../actions/questionNr/addNr'
 import LinearProgress from 'material-ui/LinearProgress';
@@ -10,27 +11,24 @@ class Timer extends PureComponent {
 
   constructor() {
     super();
-    // this.state = { time: {}, seconds: 10 };
-    // this.timer = 10;
     this.countDown = this.countDown.bind(this);
   }
-
-
 
   componentDidMount() {
     this.props.timerAction(10)
     this.startTimer()
   }
 
-
   startTimer(){
-// debugger
-    // this.setState({ time: this.props.timer });
-    if (this.props.timer === 10) {
-      var interVal = setInterval(this.countDown, 1000);
-    this.setState({interVal: interVal});
+    const { game } = this.props
 
+      if (this.props.timer === 10) {
+        // if (game.players.length > 1) {
+        var interVal = setInterval(this.countDown, 1000);
+        this.setState({interVal: interVal});
+        // }
     }
+
 
   }
 
@@ -39,10 +37,7 @@ class Timer extends PureComponent {
 
     let seconds = this.props.timer -1;
     this.props.timerAction(seconds)
-    // this.setState({
-    //   time: seconds,
-    //   seconds: seconds,
-    // });
+
     if (this.props.timer < 0) {
       // this.props.timer()
       clearInterval(this.state.interVal);
@@ -68,9 +63,17 @@ class Timer extends PureComponent {
   }
 }
 
-const mapStateToProps = ({ timer, questionsNr }) => ({
-  timer, questionsNr
-})
+
+const mapStateToProps =  ({ timer, questionsNr, currentGame, games  }) => {
+
+  const game = games.filter((g) => (g._id === currentGame))[0]
+
+  return {
+    game,
+    timer,
+    questionsNr
+  }
+}
 const mapDispatchToProps = { timerAction, addNr }
 // export default connect(null, { Timer })(Timer)
 
