@@ -19,7 +19,7 @@ class Timer extends PureComponent {
 
   componentDidMount() {
     this.props.timerAction(100)
-    this.startTimer()
+    // this.startTimer()
   }
 
 

@@ -11,7 +11,7 @@ import PropTypes from 'prop-types'
 import resettimer from '../actions/resettimer'
 import Paper from 'material-ui/Paper';
 import {GridList, GridTile} from 'material-ui/GridList';
-
+import addPoints from '../actions/questions/points'
 
 const styles = {
   root: {
@@ -48,7 +48,9 @@ class Question extends PureComponent {
   }
 
   getAnswer(a){
+    const { addPoints, game } = this.props
     console.log(a)
+    addPoints(game._id, a)
 
   }
 
@@ -115,16 +117,18 @@ class Question extends PureComponent {
 
 }
 
-const mapStateToProps = ({ games, currentUser, subscriptions, questions, timer, questionsNr }) => (
-  {
+const mapStateToProps = ({currentGame, games, currentUser, subscriptions, questions, timer, questionsNr }) => {
+  const game = games.filter((g) => (g._id === currentGame))[0]
+  return {
     games,
     currentUser,
     questions,
     subscribed: subscriptions.includes('games'),
     timer,
     questionsNr,
+    game,
   }
-)
-const mapDispatchToProps = { fetchQuestions, resettimer }
+};
+const mapDispatchToProps = { fetchQuestions, resettimer, addPoints }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Question)

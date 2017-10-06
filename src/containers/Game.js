@@ -23,7 +23,7 @@ class Game extends PureComponent {
 
     return (
       <div className="Game">
-        <QuestionsContainer />
+        <QuestionsContainer game={game} />
         <JoinDialog game={game} />
       </div>
     )
