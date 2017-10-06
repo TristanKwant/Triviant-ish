@@ -30,8 +30,10 @@ class Lobby extends PureComponent {
 
   isJoinable(game) {
     if (game.started) return false
-    return !!!this.isPlayer(game)
+    return !this.isPlayer(game)
   }
+
+
 
   isPlayer(game) {
     if (game.players instanceof Object) {
@@ -42,16 +44,20 @@ class Lobby extends PureComponent {
       .includes(this.props.currentUser._id)
   }
 
+
+
   renderGame(game, index) {
     let ActionIcon = this.isJoinable(game) ? JoinGameIcon : WatchGameIcon
     if (this.isPlayer(game)) ActionIcon = game.isPlayable ? PlayGameIcon : WaitingIcon
+
 
     return (
       <MenuItem
         key={index}
         onClick={this.goToGame(game._id).bind(this)}
         rightIcon={<ActionIcon />}
-        primaryText={game.title} />
+        primaryText={game.title} secondaryText= {game.players.length}/>
+
     )
   }
 
