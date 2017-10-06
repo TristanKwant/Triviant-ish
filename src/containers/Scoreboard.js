@@ -21,15 +21,15 @@ class Scoreboard extends PureComponent {
        if (game.players.length > 1) {
     return (
       <div>
-        <p>{ game.players[0].name} - score: {game.players[0].points} points</p>
-        <p>{ game.players[1].name} - score: {game.players[1].points} points</p>
+        <p>{ game.players[0].name } - score: {game.points[0].points} points</p>
+        <p>{ game.players[0].name } - score: {game.points[1].points} points</p>
       </div>
      )
    }
     else {
      return (
        <div>
-         <p>{ game.players[0].name} - score: {game.players[0].points} points</p>
+         <p>{ game.players[0].name} - score: {game.points[0].points} points</p>
          <p> waiting for an opponent</p>
        </div>
      )
