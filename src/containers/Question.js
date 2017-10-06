@@ -12,7 +12,7 @@ import Scoreboard from './Scoreboard'
 import resettimer from '../actions/resettimer'
 import Paper from 'material-ui/Paper';
 import {GridList, GridTile} from 'material-ui/GridList';
-
+import addPoints from '../actions/questions/points'
 
 const styles = {
   root: {
@@ -48,33 +48,52 @@ class Question extends PureComponent {
       }
   }
 
+  getAnswer(a){
+    const { addPoints, game } = this.props
+    console.log(a)
+    addPoints(game._id, a)
+
+  }
+
+
+
   renderAnswers(answers, index) {
+      var optionA = "A"
       if(index === this.props.questionsNr){
         return <GridList
                 cols={2}
                 cellHeight={100}
                 padding={10}
                 style={styles.gridList}
+
               >
               <Checkbox
                 className={'answer-checkbox'}
                 label={answers.optionA}
+
                 style={styles.checkbox}
+                onClick={() => this.getAnswer("A")}
               />
               <Checkbox
                 className={'answer-checkbox'}
                 label={answers.optionB}
+                value="optionB"
                 style={styles.checkbox}
+                onClick={() => this.getAnswer("B")}
               />
               <Checkbox
                 className={'answer-checkbox'}
                 label={answers.optionC}
+                value="optionC"
                 style={styles.checkbox}
+                onClick={() => this.getAnswer("C")}
               />
               <Checkbox
                 className={'answer-checkbox'}
                 label={answers.optionD}
+                value="optionD"
                 style={styles.checkbox}
+                onClick={() => this.getAnswer("D")}
               />
               </GridList>
 
@@ -100,16 +119,18 @@ class Question extends PureComponent {
 
 }
 
-const mapStateToProps = ({ games, currentUser, subscriptions, questions, timer, questionsNr }) => (
-  {
+const mapStateToProps = ({currentGame, games, currentUser, subscriptions, questions, timer, questionsNr }) => {
+  const game = games.filter((g) => (g._id === currentGame))[0]
+  return {
     games,
     currentUser,
     questions,
     subscribed: subscriptions.includes('games'),
     timer,
     questionsNr,
+    game,
   }
-)
-const mapDispatchToProps = { fetchQuestions, resettimer }
+};
+const mapDispatchToProps = { fetchQuestions, resettimer, addPoints }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Question)
