@@ -20,7 +20,7 @@ export class JoinDialog extends PureComponent {
 
 render() {
   const { game } = this.props
- 
+
 
   const actions = [
       <FlatButton
@@ -38,7 +38,6 @@ render() {
 
     return (
       <div>
-        <RaisedButton label="Dialog" onClick={this.handleOpen} />
         <Dialog
           title={`Want to join ${game.title}?`}
           actions={actions}
