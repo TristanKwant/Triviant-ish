@@ -20,19 +20,17 @@ class Scoreboard extends PureComponent {
 
        if (game.players.length > 1) {
     return (
-
       <div>
-      <p>{ game.players[0].name} - score: {game.players[0].score} points</p>
-      <p>{ game.players[1].name} - score: {game.players[1].score} points</p>
-
+        <p>{ game.players[0].name} - score: {game.players[0].points} points</p>
+        <p>{ game.players[1].name} - score: {game.players[1].points} points</p>
       </div>
      )
    }
     else {
      return (
        <div>
-       <p>{ game.players[0].name} - score: {game.players[0].score} points</p>
-       <p> waiting for another player </p>
+         <p>{ game.players[0].name} - score: {game.players[0].points} points</p>
+         <p> waiting for an opponent</p>
        </div>
      )
    }
@@ -45,7 +43,6 @@ const mapStateToProps =  ({ score, currentUser, currentGame, games, subscription
 
   const game = games.filter((g) => (g._id === currentGame))[0]
   const currentPlayer = game && game.players.filter((p) => (p.userId === currentUser._id))[0]
-  const scoreCount = currentPlayer
 
   return {
   currentPlayer,
