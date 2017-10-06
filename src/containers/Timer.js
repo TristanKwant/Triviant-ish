@@ -21,19 +21,13 @@ class Timer extends PureComponent {
   }
 
   startTimer(){
-    const { game } = this.props
-
     if (this.props.timer === 10) {
-      if (game.players.length === 2) {
         var interVal = setInterval(this.countDown, 1000);
         this.setState({interVal: interVal});
-      }
     }
   }
 
   countDown() {
-
-
       let seconds = this.props.timer -1;
       this.props.timerAction(seconds)
       if (this.props.timer < 0) {
@@ -50,7 +44,6 @@ class Timer extends PureComponent {
 
   render() {
     return (
-
       <div className="timer-bar">
         <span>Time left to answer: {this.props.timer}</span>
         <LinearProgress mode="determinate" value={this.props.timer} max={10} className={'timer'} />

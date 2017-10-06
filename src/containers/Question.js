@@ -52,13 +52,11 @@ class Question extends PureComponent {
     const { addPoints, game } = this.props
     console.log(a)
     addPoints(game._id, a)
-
   }
 
 
 
   renderAnswers(answers, index) {
-      var optionA = "A"
       if(index === this.props.questionsNr){
         return <GridList
                 cols={2}
@@ -97,13 +95,12 @@ class Question extends PureComponent {
               />
               </GridList>
 
-
       }
   }
 
 
   render() {
-    const { questions, timer } = this.props
+    const { questions, timer, game } = this.props
 
     return (
       <div className="Questions-container">
