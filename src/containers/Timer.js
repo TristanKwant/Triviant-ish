@@ -10,47 +10,38 @@ class Timer extends PureComponent {
 
   constructor() {
     super();
-    // this.state = { time: {}, seconds: 10 };
-    // this.timer = 10;
     this.countDown = this.countDown.bind(this);
   }
 
-
-
   componentDidMount() {
-    this.props.timerAction(100)
-    // this.startTimer()
+
+    this.props.timerAction(10)
+    this.startTimer()
+
   }
 
-
   startTimer(){
-// debugger
-    // this.setState({ time: this.props.timer });
+    const { game } = this.props
+
     if (this.props.timer === 10) {
-      var interVal = setInterval(this.countDown, 1000);
-    this.setState({interVal: interVal});
-
+      if (game.players.length === 2) {
+        var interVal = setInterval(this.countDown, 1000);
+        this.setState({interVal: interVal});
+      }
     }
-
   }
 
   countDown() {
 
 
-    let seconds = this.props.timer -1;
-    this.props.timerAction(seconds)
-    // this.setState({
-    //   time: seconds,
-    //   seconds: seconds,
-    // });
-    if (this.props.timer < 0) {
-      // this.props.timer()
-      clearInterval(this.state.interVal);
-      this.props.timerAction(10)
-      this.startTimer()
-      this.props.addNr(this.props.questionsNr +1)
-
-    }
+      let seconds = this.props.timer -1;
+      this.props.timerAction(seconds)
+      if (this.props.timer < 0) {
+        clearInterval(this.state.interVal);
+        this.props.timerAction(10)
+        this.startTimer()
+        this.props.addNr(this.props.questionsNr +1)
+      }
   }
 
 
@@ -68,9 +59,19 @@ class Timer extends PureComponent {
   }
 }
 
-const mapStateToProps = ({ timer, questionsNr }) => ({
-  timer, questionsNr
-})
+
+const mapStateToProps =  ({ timer, questionsNr, currentGame, games }) => {
+
+  const game = games.filter((g) => (g._id === currentGame))[0]
+
+  return {
+    timer,
+    questionsNr,
+    game,
+  }
+}
+
+
 const mapDispatchToProps = { timerAction, addNr }
 // export default connect(null, { Timer })(Timer)
 
